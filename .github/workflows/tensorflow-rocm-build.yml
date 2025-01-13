@@ -18,12 +18,11 @@ jobs:
           sudo apt update
           sudo apt install -y apt-transport-https curl gnupg
           # Add the correct Bazel repository
-          curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/bazel-archive-keyring.gpg > /dev/null
-          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+          curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/bazel-keyring.gpg > /dev/null
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list > /dev/null
           sudo apt update
           sudo apt install -y bazel
-
-      
+          
       - name: Setup Python Environment
         run: |
           python3 -m pip install --upgrade pip
