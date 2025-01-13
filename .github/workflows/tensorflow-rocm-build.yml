@@ -15,9 +15,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Fix Missing apt_pkg
-      - name: Fix Missing apt_pkg
+      # Step 2: Suppress Post-Invoke-Success Script
+      - name: Suppress APT Errors
         run: |
+          echo 'APT::Update::Post-Invoke-Success "true";' | sudo tee /etc/apt/apt.conf.d/99disable-post-invoke > /dev/null
           sudo apt update
           sudo apt install --reinstall -y python3-apt
 
