@@ -15,11 +15,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Disable Problematic APT Script
-      - name: Disable cnf-update-db
+      # Step 2: Fix Missing apt_pkg
+      - name: Fix Missing apt_pkg
         run: |
-          echo 'APT::Update::Post-Invoke-Success "true";' | sudo tee /etc/apt/apt.conf.d/99disable-post-invoke > /dev/null
           sudo apt update
+          sudo apt install -y python3-apt
+          sudo apt install -y python3.10-apt || true
 
       # Step 3: Add Deadsnakes PPA and Install Python 3.10
       - name: Install Python 3.10
