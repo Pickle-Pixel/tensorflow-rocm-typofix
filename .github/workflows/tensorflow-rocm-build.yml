@@ -22,7 +22,7 @@ jobs:
           echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list > /dev/null
           sudo apt update
           sudo apt install -y bazel
-          
+
       - name: Setup Python Environment
         run: |
           python3 -m pip install --upgrade pip
@@ -30,8 +30,8 @@ jobs:
 
       - name: Configure Build
         run: |
+          export HERMETIC_PYTHON_VERSION=3.10
           ./configure
-          echo "Configuration complete."
 
       - name: Build TensorFlow Pip Package
         run: |
