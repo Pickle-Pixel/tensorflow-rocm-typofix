@@ -16,14 +16,13 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt install -y python3-dev python3-pip build-essential openjdk-11-jdk \
-              git zlib1g-dev libcurl4-openssl-dev libssl-dev swig libopenblas-dev
-          # Add Bazel repository
           sudo apt install -y apt-transport-https curl gnupg
+          # Add the correct Bazel repository
           curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/bazel-archive-keyring.gpg > /dev/null
-          echo "deb [signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://bazel.build/apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
           sudo apt update
           sudo apt install -y bazel
+
       
       - name: Setup Python Environment
         run: |
