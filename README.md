@@ -1,3 +1,12 @@
+#Description
+This is an attempt to fix Tensorflow-rocm latest build that has a typo in the naming of GFX1100-1030 AMD GPUs that is not recognizing my RX7900XTX. 
+
+#Current Status
+As of Jan 22th 2025, I am still trying to build it from scratch on WSL2 environment but WSL2 is causing many issues and have resorted to using Github Workflows and still on path to make it work.
+
+
+
+
 <div align="center">
   <img src="https://www.tensorflow.org/images/tf_logo_horizontal.png">
 </div>
